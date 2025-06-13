@@ -1,36 +1,166 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Talent Search AI Recruitment Platform
 
-## Getting Started
+A modern, AI-powered talent recruitment platform that generates job descriptions and optimizes candidate search using LinkedIn Sales Navigator filters and OpenAI.
 
-First, run the development server:
+---
+
+## 📚 Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Setup & Installation](#setup--installation)
+- [Usage Guide](#usage-guide)
+- [API Limitations & Sample Data](#api-limitations--sample-data)
+- [Screenshots](#screenshots)
+- [Development Workflow](#development-workflow)
+- [Deployment](#deployment)
+- [Assumptions & Notes](#assumptions--notes)
+- [License](#license)
+
+---
+
+## 🧩 Overview
+
+This project is a full-stack assignment for HumanBit, simulating a real-world AI recruitment workflow.  
+It combines a dark, glassmorphic UI, Gemini-powered job description generation, and LinkedIn-style candidate filtering with professional error handling and state management.
+
+---
+
+## ✨ Features
+
+### 🔹 AI Job Description Generator
+- Enter job details and generate a professional job description using Gemini.
+
+### 🔹 Manual & AI-Optimized Candidate Filtering
+- Search and select job titles, companies, and locations (via LinkedIn Sales Navigator API on RapidAPI).
+- Add filters as "Include" (must-have) or "Exclude" (must-not-have).
+- Chips/tags for filter management with real-time removal and state sync.
+- AI agent iteratively optimizes filters for best candidate results.
+
+### 🔹 Candidate Results Display
+- Paginated, responsive grid of candidate cards (sample/mock data).
+- Clean, accessible, and mobile-friendly UI.
+
+### 🔹 Error Handling
+- All API, loading, and empty states are gracefully managed.
+
+### 🔹 Deployment
+- Vercel-hosted with environment variables for API keys.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js 14+, TypeScript, Tailwind CSS  
+- **AI:** Gemini API (GPT-3.5 / GPT-4)  
+- **External APIs:** RapidAPI LinkedIn Sales Navigator (for filter suggestions)  
+- **Deployment:** Vercel  
+
+---
+
+## ⚙️ Setup & Installation
+
+### 🔸 Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
+```
+
+### 🔸 Install Dependencies
+
+```bash
+npm install
+```
+
+### 🔸 Configure Environment Variables
+
+Create a `.env.local` file and add the following:
+
+```env
+OPENAI_API_KEY=your-openai-key
+RAPIDAPI_KEY=your-rapidapi-key
+```
+
+⚠️ **Do not commit your `.env.local` file.**
+
+### 🔸 Start the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then visit: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧑‍💻 Usage Guide
 
-## Learn More
+### 🔹 Landing Page
+- Click **“Find Talent”** to begin.
 
-To learn more about Next.js, take a look at the following resources:
+### 🔹 Job Description
+- Fill out job title, company, location, skills, and experience.
+- Click **“Generate Job Description”** to use AI.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔹 Filter Suggestions
+- Use search fields to get dynamic suggestions for job title, company, and location.
+- Add filters as Include or Exclude; manage them as chips/tags.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🔹 AI Optimization
+- If too few candidates are found, the system iteratively adjusts filters to improve results.
 
-## Deploy on Vercel
+### 🔹 Candidate Results
+- View paginated, professional candidate cards.
+- All candidate data is mock/sample for demo purposes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚫 API Limitations & Sample Data
+
+Due to LinkedIn API restrictions:
+- **Real candidate profiles cannot be fetched**
+- All candidate results use a realistic **sample dataset**:  
+  `./data/candidates.json`  
+  Fields: name, role, company, location, skills, etc.
+
+➡️ All filter logic and AI workflows are fully implemented using this dataset.
+
+---
+
+## 🧪 Development Workflow
+
+- **Git:** Conventional commits (`feat:`, `fix:`, `chore:` etc.)
+- **Pull Requests:** Used for all major features/bugfixes
+- **TypeScript:** All components and logic are fully typed
+- **Error Handling:** All API and UI errors are caught and shown to the user
+
+---
+
+## 🚀 Deployment
+
+### 🔹 Vercel
+
+- Environment variables set in Vercel dashboard
+
+### 🔹 Production Build
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 📝 Assumptions & Notes
+
+- **LinkedIn API:** Only filter suggestions are available via RapidAPI. Candidate search uses mock data.
+- **AI Agent:** Filter optimization logic is simulated (adjusting filters based on results).
+- **Design:** Fully responsive, accessible, and styled as per spec (glassmorphism, gradients, Nunito & Encode Sans fonts).
+- **Testing:** All user flows and edge cases are manually tested.
+
+---
+
+## 📄 License
+
+MIT License  
