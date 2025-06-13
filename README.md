@@ -140,7 +140,7 @@ Due to LinkedIn API restrictions:
 ## 🚀 Deployment
 
 ### 🔹 Vercel
-
+- Here is the deployed link (https://talent-search-application.vercel.app/)
 - Environment variables set in Vercel dashboard
 
 ### 🔹 Production Build
