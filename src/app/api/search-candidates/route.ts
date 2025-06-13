@@ -7,19 +7,39 @@ type SelectedFilter = {
   include: boolean;
 };
 
+interface FiltersObject {
+  jobTitle?: string[];
+  company?: string[];
+  location?: string[];
+}
 
 export async function POST(req: NextRequest) {
   try {
     const { filters } = await req.json() as { filters: SelectedFilter[] };
+    
+    // Validate input
+    if (!filters?.length) {
+      return NextResponse.json(
+        { error: "No filters provided" },
+        { status: 400 }
+      );
+    }
 
-    // Build filter params for the LinkedIn API
-    const jobTitleIds = filters.filter(f => f.type === 'jobTitle' && f.include).map(f => f.id);
-    const companyIds = filters.filter(f => f.type === 'company' && f.include).map(f => f.id);
-    const locationIds = filters.filter(f => f.type === 'location' && f.include).map(f => f.id);
+    // Build filters object
+    const filtersObject: FiltersObject = {};
+    filters.forEach((f) => {
+      if (f.include) {
+        const filterType = f.type.toLowerCase() as keyof FiltersObject;
+        if (!filtersObject[filterType]) {
+          filtersObject[filterType] = [];
+        }
+        filtersObject[filterType]?.push(f.id);
+      }
+    });
 
-    // Example: Call LinkedIn profile search via RapidAPI (pseudo-endpoint, replace with actual)
+    // Call LinkedIn API
     const response = await fetch(
-      'https://linkedin-sales-navigator-no-cookies-required.p.rapidapi.com/profile_search',
+      'https://linkedin-sales-navigator-no-cookies-required.p.rapidapi.com/premium_search_person',
       {
         method: 'POST',
         headers: {
@@ -28,24 +48,25 @@ export async function POST(req: NextRequest) {
           'X-RapidAPI-Host': 'linkedin-sales-navigator-no-cookies-required.p.rapidapi.com',
         },
         body: JSON.stringify({
-          jobTitleIds,
-          companyIds,
-          locationIds,
-          // Add more filter params as needed
+          filters: filtersObject,
+          page: 1,
+          limit: 25
         }),
       }
     );
 
     if (!response.ok) {
-      const errorText = await response.text();
+      const errorText = await response.text().catch(() => 'Unknown error');
       throw new Error(`LinkedIn API error: ${errorText}`);
     }
 
     const result = await response.json();
     return NextResponse.json({ candidates: result.candidates || [] });
+
   } catch (error: any) {
+    console.error("Candidate search error:", error);
     return NextResponse.json(
-      { error: error.message || 'Internal server error' },
+      { error: error.message || "Internal server error" },
       { status: 500 }
     );
   }
