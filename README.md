@@ -128,6 +128,25 @@ Due to LinkedIn API restrictions:
 
 ---
 
+## API Limitations & Rate Limits
+
+> **Important Note:**  
+> The LinkedIn Sales Navigator filter suggestion feature in this app uses RapidAPI’s free tier, which allows only **25 requests per day** per account.  
+> If you see errors like “Failed to optimize filters” or “You have exceeded the rate limit,” it means the daily quota has been reached.  
+> The quota resets every 24 hours (midnight UTC), or you can use a new RapidAPI account/key for more testing.  
+> For production or extended demos, upgrading to a paid RapidAPI plan is recommended.
+
+**How this affects the demo:**
+- If the quota is exceeded, filter suggestions (job title, company, location) will not work until the quota resets or a new API key is used.
+- All other features (AI job description, candidate filtering, sample data display) will continue to work.
+
+**What to do if you hit the limit:**
+- Wait until the next day for the quota to reset,
+- or use a different RapidAPI account/key,
+- or contact the project owner for a demo/pro key.
+  
+---
+
 ## 🧪 Development Workflow
 
 - **Git:** Conventional commits (`feat:`, `fix:`, `chore:` etc.)
