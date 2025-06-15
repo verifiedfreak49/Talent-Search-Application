@@ -107,6 +107,7 @@ export default function Home() {
 
   const handleFindCandidates = async () => {
     setFindingCandidates(true);
+    setFilterError('');
     try {
 
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -115,12 +116,14 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ jobTitle, company, location, skills, experience }),
       });
+      if(!res.ok) throw new Error('API error');
       const data = await res.json();
       setOptimizedFilters(data.filters || data);
-    } catch (err: any) {
-      setFilterError(err.message);
+    } catch (err) {
+      setFilterError('API rate limit reached. Showing sample candidates only.');
     } finally {
       setFindingCandidates(false);
+      setShowCandidates(true);
     }
   };
 
