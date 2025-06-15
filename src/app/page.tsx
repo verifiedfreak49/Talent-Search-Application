@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from "react";
-import candidatesData from './data/candidates.json';
 
 interface Candidate {
   Name: string;
@@ -44,6 +43,7 @@ function FilterChip({
 }
 
 export default function Home() {
+  const [candidates, setCandidates] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [jobTitle, setJobTitle] = useState('');
   const [company, setCompany] = useState('');
@@ -108,6 +108,8 @@ export default function Home() {
   const handleFindCandidates = async () => {
     setFindingCandidates(true);
     try {
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
       const res = await fetch('/api/optimize-filters', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -165,8 +167,8 @@ export default function Home() {
   };
 
   const filterCandidates = () => {
-    if (selectedFilters.length === 0) return candidatesData as Candidate[];
-    return (candidatesData as Candidate[]).filter(candidate => 
+    if (selectedFilters.length === 0) return candidates as Candidate[];
+    return (candidates as Candidate[]).filter(candidate => 
       selectedFilters.every(filter => {
         const value = filter.value.toLowerCase();
         const candidateValue = {
@@ -189,6 +191,13 @@ export default function Home() {
     if (isMounted) optimizeFilters();
     return () => { isMounted = false; };
   }, [selectedFilters]);
+
+  useEffect(() => {
+    fetch('/data/candidates.json')
+    .then(res => res.json())
+    .then(setCandidates)
+    .catch(console.error);
+  }, []);
 
   const renderTabbedSuggestions = () => {
     const tabs = [
