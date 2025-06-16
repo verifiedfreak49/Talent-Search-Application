@@ -63,8 +63,8 @@ It combines a dark, glassmorphic UI, Gemini-powered job description generation, 
 ### 🔸 Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/verifiedfreak49/Talent-Search-Application.git
+cd Talent-Search-Application
 ```
 
 ### 🔸 Install Dependencies
@@ -78,7 +78,7 @@ npm install
 Create a `.env.local` file and add the following:
 
 ```env
-OPENAI_API_KEY=your-openai-key
+GEMINI_API_KEY=your-openai-key
 RAPIDAPI_KEY=your-rapidapi-key
 ```
 
