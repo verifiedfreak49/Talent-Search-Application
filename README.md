@@ -11,7 +11,7 @@ A modern, AI-powered talent recruitment platform that generates job descriptions
 - [Setup & Installation](#setup--installation)
 - [Usage Guide](#usage-guide)
 - [API Limitations & Sample Data](#api-limitations--sample-data)
-- [Screenshots](#screenshots)
+- [API Limitations & Rate Limits](#api-limitations--rate-limits)
 - [Development Workflow](#development-workflow)
 - [Deployment](#deployment)
 - [Assumptions & Notes](#assumptions--notes)
