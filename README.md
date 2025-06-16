@@ -1,6 +1,6 @@
 # Talent Search AI Recruitment Platform
 
-A modern, AI-powered talent recruitment platform that generates job descriptions and optimizes candidate search using LinkedIn Sales Navigator filters and OpenAI.
+A modern, AI-powered talent recruitment platform that generates job descriptions and optimizes candidate search using LinkedIn Sales Navigator filters and Gemini API.
 
 ---
 
@@ -52,7 +52,7 @@ It combines a dark, glassmorphic UI, Gemini-powered job description generation, 
 ## 🛠️ Tech Stack
 
 - **Frontend:** Next.js 14+, TypeScript, Tailwind CSS  
-- **AI:** Gemini API (GPT-3.5 / GPT-4)  
+- **AI:** Gemini API 
 - **External APIs:** RapidAPI LinkedIn Sales Navigator (for filter suggestions)  
 - **Deployment:** Vercel  
 
