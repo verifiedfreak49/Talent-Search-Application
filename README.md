@@ -78,7 +78,7 @@ npm install
 Create a `.env.local` file and add the following:
 
 ```env
-GEMINI_API_KEY=your-openai-key
+GEMINI_API_KEY=your-gemini-key
 RAPIDAPI_KEY=your-rapidapi-key
 ```
 
